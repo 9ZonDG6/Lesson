@@ -1,4 +1,4 @@
 text = input("Введите текст: ")
 text_count = len(text.split())
 
-print("Кол-во слов:", text_count)
+print(f"Кол-во слов: {text_count}")
