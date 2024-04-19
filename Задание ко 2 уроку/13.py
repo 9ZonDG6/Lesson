@@ -13,7 +13,7 @@ c = employees - students
 d = students ^ employees
 # d = students.symmetric_difference(employees)
 
-print('Все люди: ', a)
-print('Одновременно учится и работает: ', b)
-print('Только работает: ', c)
-print('Либо учится, либо работает, но не одновременно: ', d)
+print(f'Все люди: {a}')
+print(f'Одновременно учится и работает: {b}')
+print(f'Только работает: {c}')
+print(f'либо учится, либо работает, но не одновременно: {d}')
