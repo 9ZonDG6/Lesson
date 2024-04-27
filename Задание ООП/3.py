@@ -13,9 +13,12 @@ class Calc:
         return self.first_num * self.second_num
 
     def division(self):
-        return self.first_num / self.second_num
+        if self.second_num == 0:
+            return 'ДЕЛЕНИЕ НА НОЛЬ!!!'
+        else:
+            return self.first_num / self.second_num
 
 
-num = Calc(10, 2)
+num = Calc(10, 0)
 print(f'Сложение: {num.addition()}\nВычитание: {num.subtraction()}\n'
       f'Умножение: {num.multiplication()}\nДеление: {num.division()}')
