@@ -1,2 +1,82 @@
 Создать проект с приложением, в приложении создать несколько моделей на ваше усмотрение;
 Добавить представление для вывода текущих даты и времени (можно использовать HTTPResponse).
+- дополнить различными полями модели из проекта, созданного вами в рамках прошлого ДЗ;
+- «получить» 25 различных QuerySet’ов по содержимому БД ваших домашних проектов:
+
+models.Car.objects.all()
+<QuerySet [<Car: Toyota Camry>, <Car: Volvo XC60>, <Car: BMW X5>, <Car: Tesla Model S Plaid>, <Car: Mercedes-Benz W140 S320>]>
+
+models.Car.objects.all()[:3]
+<QuerySet [<Car: Toyota Camry>, <Car: Volvo XC60>, <Car: BMW X5>]>
+
+models.Car.objects.reverse()
+<QuerySet [<Car: Toyota Camry>, <Car: Volvo XC60>, <Car: BMW X5>, <Car: Tesla Model S Plaid>, <Car: Mercedes-Benz W140 S320>]>
+
+models.Car.objects.filter(fuel = 'petrol')
+<QuerySet [<Car: Toyota Camry>, <Car: BMW X5>, <Car: Mercedes-Benz W140 S320>]>
+
+models.Car.objects.create(brand='Mitsubishi', model='Outlander PHEV', fuel='hybrid', horsepower=121)
+<Car: Mitsubishi Outlander PHEV>
+
+models.Plane.objects.latest('name')
+<Plane: Embraer Phenom 100>
+
+models.Plane.objects.earliest('name')
+<Plane: Airbus A330>
+
+models.Car.objects.first()
+<Car: Toyota Camry>
+
+models.Car.objects.last()
+<Car: Mitsubishi Outlander PHEV>
+
+models.Car.objects.filter(horsepower__gt=150)
+<QuerySet [<Car: Toyota Camry>, <Car: Volvo XC60>, <Car: BMW X5>, <Car: Tesla Model S Plaid>, <Car: Mercedes-Benz W140 S320>]>
+
+models.Car.objects.filter(horsepower__gte=181)
+<QuerySet [<Car: Toyota Camry>, <Car: Volvo XC60>, <Car: BMW X5>, <Car: Tesla Model S Plaid>, <Car: Mercedes-Benz W140 S320>]>
+
+models.Car.objects.filter(horsepower__lt=150)
+<QuerySet [<Car: Mitsubishi Outlander PHEV>]>
+
+models.Car.objects.order_by('brand')
+<QuerySet [<Car: BMW X5>, <Car: Mercedes-Benz W140 S320>, <Car: Mitsubishi Outlander PHEV>, <Car: Tesla Model S Plaid>, <Car: Toyota Camry>, <Car: Volvo XC60>]>
+
+models.Car.objects.order_by('-brand')
+<QuerySet [<Car: Volvo XC60>, <Car: Toyota Camry>, <Car: Tesla Model S Plaid>, <Car: Mitsubishi Outlander PHEV>, <Car: Mercedes-Benz W140 S320>, <Car: BMW X5>]>
+
+models.Car.objects.get(pk=2)
+<Car: Volvo XC60>
+
+models.Car.objects.count()
+6
+
+models.Car.objects.filter(horsepower__contains=0)
+<QuerySet [<Car: Volvo XC60>, <Car: BMW X5>, <Car: Tesla Model S Plaid>]>
+
+models.Car.objects.filter(horsepower=121) | models.Car.objects.filter(horsepower=1020)
+<QuerySet [<Car: Tesla Model S Plaid>, <Car: Mitsubishi Outlander PHEV>]>
+
+models.Car.objects.filter(horsepower=121) & models.Car.objects.filter(fuel = 'hybrid')
+<QuerySet [<Car: Mitsubishi Outlander PHEV>]>
+
+models.Plane.objects.filter(name__startswith='A')
+<QuerySet [<Plane: Airbus A330>]>
+
+models.Plane.objects.filter(name__endswith='t')
+<QuerySet [<Plane: Embraer E-Jet>]>
+
+models.Car.objects.exclude(brand__contains='l')
+<QuerySet [<Car: Toyota Camry>, <Car: BMW X5>, <Car: Mercedes-Benz W140 S320>, <Car: Mitsubishi Outlander PHEV>]>
+
+models.Car.objects.filter(horsepower__range=(150,200))
+<QuerySet [<Car: Toyota Camry>, <Car: Volvo XC60>]>
+
+models.Car.objects.aggregate(Max('horsepower'))
+{'horsepower__max': 1020}
+
+models.Car.objects.aggregate(Min('horsepower'))
+{'horsepower__min': 121}
+
+models.Car.objects.aggregate(Avg('horsepower'))
+{'horsepower__avg': 347.1666666666667}
