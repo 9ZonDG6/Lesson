@@ -1,0 +1,8 @@
+<div class="col-md-2">
+    <h3 class="mb-4 text-center">Категории</h3>
+    <ul class="list-group">
+        {% for category in categories %}
+            <a href="{{ category.get_absolute_url }}" class="list-group-item">{{ category.title }}</a>
+        {% endfor %}
+    </ul>
+</div>
