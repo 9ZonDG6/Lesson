@@ -13,9 +13,13 @@
 
 <div class="container-fluid my-3">
     <div class="row">
-        {% include 'inc/_sidebar.html' %}
+        <div class="col-md-2">
+            {% include 'inc/_sidebar.html' %}
+        </div>
 
-        {% block content %}CONTENT{% endblock %}
+        <div class="col-md-10">
+            {% block content %}CONTENT{% endblock %}
+        </div>
     </div>
 </div>
 
