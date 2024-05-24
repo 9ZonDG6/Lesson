@@ -1,0 +1,11 @@
+{% load bootstrap5 %}
+<h3 class="mb-3 text-center">Фильтры</h3>
+<div>
+    <form method="get">
+        {% csrf_token %}
+        {% bootstrap_form filters.form %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">Поиск</button>
+        {% endbuttons %}
+    </form>
+</div>
